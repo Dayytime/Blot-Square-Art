@@ -9,14 +9,19 @@ const frameHeight = 125
 setDocDimensions(frameWidth, frameHeight)
 
 function createSquare(width, height) {
-  let square = [[0,0], 
-                [width, 0], 
-                [width, height], 
-                [0, height],
-                [0, 0]]
-  square = bt.rotate(square, bt.randInRange(30, 350))
+  let square = 
+    [
+      [0, 0],
+      [width, 0],
+      [width, height],
+      [0, height],
+      [0, 0]
+    ]
+  
+  bt.rotate([square], bt.randInRange(0,360))
+  bt.translate([square], [bt.randInRange(0, 125), bt.randInRange(0, 125)])
   return square
 }
 
 
-drawLines([createSquare(bt.randInRange(30, 125), bt.randInRange(30, 125))])
+drawLines([createSquare(bt.randInRange(10, 50), bt.randInRange(10, 50))])
