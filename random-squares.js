@@ -1,5 +1,6 @@
 const frameWidth = 125
 const frameHeight = 125
+
 const frame = [
   [0, 0],
   [frameWidth, 0],
@@ -18,7 +19,6 @@ function createSquare(width, height) {
     [0, height],
     [0, 0]
   ]
-
 
   bt.rotate([square], bt.randInRange(0, 360))
   bt.translate([square], [bt.randInRange(0, frameWidth), bt.randInRange(0, frameHeight)])
