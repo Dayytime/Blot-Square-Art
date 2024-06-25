@@ -1,6 +1,10 @@
-const frameWidth = 125
-const frameHeight = 125
+// welcome to blot!
 
+// check out this guide to learn how to program in blot
+// https://blot.hackclub.com/editor?guide=start
+
+const frameWidth = 300
+const frameHeight = 300
 const frame = [
   [0, 0],
   [frameWidth, 0],
@@ -12,6 +16,7 @@ const frame = [
 setDocDimensions(frameWidth, frameHeight)
 
 function createSquare(width, height) {
+  let valid = true
   let square = [
     [0, 0],
     [width, 0],
@@ -20,11 +25,23 @@ function createSquare(width, height) {
     [0, 0]
   ]
 
+  
   bt.rotate([square], bt.randInRange(0, 360))
   bt.translate([square], [bt.randInRange(0, frameWidth), bt.randInRange(0, frameHeight)])
-  bt.cut([square], [frame])
-  return square
+  for (let point in square){
+    if (!bt.pointInside([frame], square[point])){
+      console.log(square[point])
+      valid = false
+      break
+    }
+  }
+  if (valid){
+    return square
+    }
+  else{return [[0,0]]}
 }
 
 drawLines([frame])
-drawLines([createSquare(bt.randInRange(10, 50), bt.randInRange(10, 50))])
+for(let i = 0; i <= 25; i++){
+  drawLines([createSquare(bt.randInRange(10, 50), bt.randInRange(10, 50))])
+}
