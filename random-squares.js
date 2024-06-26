@@ -62,7 +62,27 @@ function generateShapes() {
   return shape
 }
 
-drawLines(frame)
-for(let i = 0; i <= 20; i++){
-  drawLines(generateShapes())
+drawLines(frame, {fill: "Black"})
+
+let color = ""
+
+
+for (let i = 0; i <= 25; i++){
+  const randomNum = bt.randIntInRange(0, 7)
+  if (randomNum == 1) {
+  color = "HotPink"
+  } 
+  else if (randomNum == 2) {
+  color = "Yellow"
+  } 
+  else if (randomNum == 3) {
+  color = "GreenYellow"
+  } 
+  else if (randomNum == 4) {
+  color = "Aqua"
+  } 
+  else if (randomNum == 5) {
+  color = "Orange"
+  }
+  drawLines(generateShapes(), {fill: color})
 }
