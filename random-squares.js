@@ -1,35 +1,37 @@
 const frameWidth = 300
 const frameHeight = 300
-const frame = [[
-  [0, 0],
-  [frameWidth, 0],
-  [frameWidth, frameHeight],
-  [0, frameHeight],
-  [0, 0]
-]]
+const frame = [
+  [
+    [0, 0],
+    [frameWidth, 0],
+    [frameWidth, frameHeight],
+    [0, frameHeight],
+    [0, 0]
+  ]
+]
 
 setDocDimensions(frameWidth, frameHeight)
 
-function createLightning(){
+function createLightning(size) {
   const t = new bt.Turtle()
   t.left(60)
-  t.forward(20)
+  t.forward(size)
   t.left(130)
-  t.forward(20/5)
+  t.forward(size / 5)
   t.right(120)
-  t.forward(20)
+  t.forward(size)
   t.left(170)
-  t.forward(25)
+  t.forward(size + (size / 4))
   t.left(130)
-  t.forward(5)
-  t.right(119.9)
-  t.forward(15.44)
+  t.forward(size / 4)
+  t.right(120)
+  t.forward(size / 1.3)
   t.left(180)
-  t.forward(7)
+  t.forward(size / 2.9)
   return t.path
 }
 
-function createRec(width, height){
+function createRec(width, height) {
   const t = new bt.Turtle()
   t.forward(width)
   t.left(90)
@@ -38,17 +40,18 @@ function createRec(width, height){
   t.forward(width)
   t.left(90)
   t.forward(height)
+  console.log("Rec")
   return t.path
 }
 
-function createCircle(radius){
+function createCircle(radius) {
   const t = new bt.Turtle()
   t.arc(360, radius)
   console.log("circle")
   return t.path
 }
 
-function createTriangle(size){
+function createTriangle(size) {
   const t = new bt.Turtle()
   t.forward(size)
   t.left(120)
@@ -60,54 +63,44 @@ function createTriangle(size){
 }
 
 function generateShapes() {
-  let randomChoice = bt.randIntInRange(1,4)
+  let randomChoice = bt.randIntInRange(1, 4)
   let shape = []
-  console.log(randomChoice)
 
-  if (randomChoice == 1){
+  if (randomChoice == 1) {
     shape = createRec(bt.randInRange(10, 50), bt.randInRange(10, 50))
-  }
-  else if (randomChoice == 2){
+  } else if (randomChoice == 2) {
     shape = createCircle(bt.randInRange(10, 50))
-  }
-  else if (randomChoice == 3){
+  } else if (randomChoice == 3) {
     shape = createTriangle(bt.randInRange(10, 50))
-  }
-  else {
-    shape = createLightning()
+  } else {
+    shape = createLightning(bt.randInRange(10, 50))
   }
 
-  
+
   bt.rotate(shape, bt.randInRange(0, 360))
   bt.translate(shape, [bt.randInRange(0, frameWidth), bt.randInRange(0, frameHeight)])
   bt.cut(shape, frame)
   return shape
 }
 
-drawLines(frame, {fill: "Black"})
+
+drawLines(frame, { fill: "Black", width: 20 })
 
 let color = ""
 
 
-for (let i = 0; i <= 25; i++){
-  const randomNum = bt.randIntInRange(0, 7)
+for (let i = 0; i <= 25; i++) {
+  const randomNum = bt.randIntInRange(1, 5)
   if (randomNum == 1) {
-  color = "HotPink"
-  } 
-  else if (randomNum == 2) {
-  color = "Yellow"
-  } 
-  else if (randomNum == 3) {
-  color = "GreenYellow"
-  } 
-  else if (randomNum == 4) {
-  color = "Aqua"
-  } 
-  else if (randomNum == 5) {
-  color = "Orange"
+    color = "HotPink"
+  } else if (randomNum == 2) {
+    color = "Yellow"
+  } else if (randomNum == 3) {
+    color = "GreenYellow"
+  } else if (randomNum == 4) {
+    color = "Aqua"
+  } else if (randomNum == 5) {
+    color = "Orange"
   }
-  drawLines(generateShapes(), {fill: color})
+  drawLines(generateShapes(), { fill: color, width: 20 })
 }
-
-
-
