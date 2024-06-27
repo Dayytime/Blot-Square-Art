@@ -10,6 +10,25 @@ const frame = [[
 
 setDocDimensions(frameWidth, frameHeight)
 
+function createLightning(){
+  const t = new bt.Turtle()
+  t.left(60)
+  t.forward(20)
+  t.left(130)
+  t.forward(20/5)
+  t.right(120)
+  t.forward(20)
+  t.left(170)
+  t.forward(25)
+  t.left(130)
+  t.forward(5)
+  t.right(119.9)
+  t.forward(15.44)
+  t.left(180)
+  t.forward(7)
+  return t.path
+}
+
 function createRec(width, height){
   const t = new bt.Turtle()
   t.forward(width)
@@ -41,7 +60,7 @@ function createTriangle(size){
 }
 
 function generateShapes() {
-  let randomChoice = bt.randIntInRange(1,3)
+  let randomChoice = bt.randIntInRange(1,4)
   let shape = []
   console.log(randomChoice)
 
@@ -51,8 +70,11 @@ function generateShapes() {
   else if (randomChoice == 2){
     shape = createCircle(bt.randInRange(10, 50))
   }
-  else {
+  else if (randomChoice == 3){
     shape = createTriangle(bt.randInRange(10, 50))
+  }
+  else {
+    shape = createLightning()
   }
 
   
@@ -86,3 +108,6 @@ for (let i = 0; i <= 25; i++){
   }
   drawLines(generateShapes(), {fill: color})
 }
+
+
+
