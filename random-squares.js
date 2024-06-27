@@ -31,6 +31,35 @@ function createLightning(size) {
   return t.path
 }
 
+function createSquiggle(size){
+  const t = new bt.Turtle()
+  t.right(90)
+  t.arc(-180,size/6.7)
+  
+  t.arc(-180, size)
+  
+  t.arc(180,size/6.7)
+  
+  t.arc(-180, size)
+  
+  t.arc(180,size/6.7)
+  
+  t.arc(-180, size)
+  
+  t.arc(-180,size/6.7)
+  
+  t.arc(180, size/1.42857)
+  
+  t.arc(-180,size/2.22222)
+  
+  t.arc(180, size/1.42857)
+  
+  t.arc(-180,size/2.22222)
+  t.arc(180, size/1.42857)
+
+  return t.path
+}
+
 function createRec(width, height) {
   const t = new bt.Turtle()
   t.forward(width)
@@ -63,7 +92,7 @@ function createTriangle(size) {
 }
 
 function generateShapes() {
-  let randomChoice = bt.randIntInRange(1, 4)
+  let randomChoice = bt.randIntInRange(1, 5)
   let shape = []
 
   if (randomChoice == 1) {
@@ -72,9 +101,12 @@ function generateShapes() {
     shape = createCircle(bt.randInRange(10, 50))
   } else if (randomChoice == 3) {
     shape = createTriangle(bt.randInRange(10, 50))
-  } else {
+  } else if (randomChoice == 4) {
     shape = createLightning(bt.randInRange(10, 50))
+  } else {
+    shape = createSquiggle(bt.randInRange(10,20))
   }
+  
 
 
   bt.rotate(shape, bt.randInRange(0, 360))
@@ -87,6 +119,7 @@ function generateShapes() {
 drawLines(frame, { fill: "Black", width: 20 })
 
 let color = ""
+
 
 
 for (let i = 0; i <= 25; i++) {
@@ -102,5 +135,6 @@ for (let i = 0; i <= 25; i++) {
   } else if (randomNum == 5) {
     color = "Orange"
   }
+  
   drawLines(generateShapes(), { fill: color, width: 20 })
 }
