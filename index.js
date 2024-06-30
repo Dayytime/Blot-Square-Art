@@ -1,5 +1,13 @@
+/*
+@title: Retro Memphis Pattern
+@author: Majd
+@snapshot: snap2.png
+*/
+
 const frameWidth = 300
 const frameHeight = 300
+const amountOfShapes = 10
+
 const frame = [
   [
     [0, 0],
@@ -114,7 +122,7 @@ let color = ""
 
 
 
-for (let i = 0; i <= 10; i++) {
+for (let i = 0; i <= amountOfShapes; i++) {
   const randomNum = bt.randIntInRange(1, 5)
   if (randomNum == 1) {
     color = "HotPink"
